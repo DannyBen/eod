@@ -1,0 +1,121 @@
+EOD Historical Data API
+
+Usage:
+  eod data SYMBOL [options] [PARAMS...]
+  eod bulk EXCHANGE [options] [PARAMS...]
+  eod live SYMBOL [options] [PARAMS...]
+  eod fundamental SYMBOL [options] [PARAMS...]
+  eod fundamental_bulk SYMBOL [options] [PARAMS...]
+  eod dividends SYMBOL [options] [PARAMS...]
+  eod splits SYMBOL [options] [PARAMS...]
+  eod technical SYMBOL [options] [PARAMS...]
+  eod intraday SYMBOL [options] [PARAMS...]
+  eod opts SYMBOL [options] [PARAMS...]
+  eod events [options] [PARAMS...]
+  eod insider [options] [PARAMS...]
+  eod calendar CALENDAR [options] [PARAMS...]
+  eod macro COUNTRY [options] [PARAMS...]
+  eod bond SYMBOL [options] [PARAMS...]
+  eod (-h|--help|--version)
+
+Commands:
+  data
+    Download historical EOD data (/eod)
+
+  bulk
+    Download historical EOD bulk data (/eod-bulk-last-day)
+
+  live
+    Download live data (/real-time)
+
+  fundamental
+    Download fundamental data (/fundamentals)
+
+  fundamental_bulk
+    Download bulk fundamental data (/bulk-fundamentals)
+
+  dividends
+    Download dividends data (/div)
+
+  splits
+    Download splits data (/splits)
+
+  technical
+    Download technical data (/technical)
+
+  intraday
+    Download intraday data (/intraday)
+
+  opts
+    Download options data (/options)
+
+  events
+    Download economic events data (/economic-events)
+
+  insider
+    Download insider transactions data (/insider-transactions)
+
+  calendar
+    Download calendar data (earnings, trends, IPOs and splits) (/calendar)
+
+  macro
+    Download macroeconomics data (/macro-indicator)
+
+  bond
+    Download bond fundamental data (/bond-fundamentals)
+
+Options:
+  -f --format FORMAT
+    Output format: csv, json, yaml, pretty or url [default: pretty]
+
+  -s --save PATH
+    Save output to file
+
+  -h --help
+    Show this help
+
+  --version
+    Show version number
+
+Parameters:
+  SYMBOL
+    Ticker symbol
+
+  CALENDAR
+    Calendar type: earnings, trends, ipos or splits
+
+  COUNTRY
+    Country code in the Alpha-3 ISO format
+
+  EXCHANGE
+    Exchange code
+
+  PARAMS
+    An optional list of query string parameters, separated by a space, to send
+    with the request. Each parameter should be in the format of key:value.
+    example: period:w from:2022-01-01
+    
+    See https://eodhistoricaldata.com/financial-apis/ for all supported params.
+
+Environment Variables:
+  EOD_API_TOKEN
+    Your EOD Historical Data API token [required]
+
+  EOD_CACHE_DIR
+    API cache diredctory [default: cache]
+
+  EOD_CACHE_LIFE
+    API cache life. These formats are supported:
+    off - No cache
+    20s - 20 seconds
+    10m - 10 minutes
+    10h - 10 hours
+    10d - 10 days
+
+Examples:
+  eod data AAPL.US
+  eod data AAPL.US --format csv period:m from:2022-01-01
+  eod live AAPL.US -fyaml
+  eod fundamental 'AAPL.US' filter:General
+  eod technical AAPL.US function:sma
+  eod macro USA indicator:inflation_consumer_prices_annual

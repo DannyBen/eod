@@ -19,25 +19,6 @@ module EOD
       { api_token: api_token, fmt: :json } 
     end
 
-    # Access the /eod API endpoint is provided implicitely by APICake
-    # Access the /fundumentals API endpoint is provided implicitely by APICake
-
-    # Access the /real-time API endpoint is explicitly, due to the fact it
-    # contains a hyphen. In addition, symbols can be provided as an array, which
-    # is converted to the multi-symbol request format specified by the API
-    # (using the first symbol as a path argument, and the others in the `s`
-    # auery argument, comma delimited).
-    def real_time(symbols, args = {})
-      if symbols.is_a? Array
-        symbol = symbols.first
-        args[:s] = symbols.drop(1).join ','
-      else
-        symbol = symbols
-      end
-
-      get "/real-time", symbol, args
-    end
-
     def get_csv(*args)
       payload = get! *args
 
@@ -47,10 +28,6 @@ module EOD
 
       data = payload.parsed_response
       data = csv_node data if data.is_a? Hash
-
-      unless data.is_a? Array
-        raise BadResponse, "Cannot parse response, expecting Array, got #{data.class}"
-      end
 
       header = data.first.keys
 

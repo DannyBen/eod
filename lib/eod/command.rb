@@ -42,22 +42,31 @@ module EOD
     command "macro", "Download macroeconomics data (/macro-indicator)"
     command "bond", "Download bond fundamental data (/bond-fundamentals)"
 
-    option "-f --format FORMAT", "Output format: csv, json, yaml, pretty. [default: pretty]"
+    option "-f --format FORMAT", "Output format: csv, json, yaml, pretty or url [default: pretty]"
     option "-s --save PATH", "Save output to file"
 
     param "SYMBOL", "Ticker symbol"
-    
+    param "CALENDAR", "Calendar type: earnings, trends, ipos or splits"
+    param "COUNTRY", "Country code in the Alpha-3 ISO format"
+    param "EXCHANGE", "Exchange code"
     param "PARAMS", <<~EOF
       An optional list of query string parameters, separated by a space, to send with the request. \
       Each parameter should be in the format of key:value.
       example: period:w from:2022-01-01
+
+      See https://eodhistoricaldata.com/financial-apis/ for all supported params.
     EOF
     
-    param "CALENDAR", "Calendar type: earnings, trends, ipos or splits"
-    param "COUNTRY", "Country code in the Alpha-3 ISO format"
-    param "EXCHANGE", "Exchange code"
-
-    environment "EOD_API_TOKEN", "Your EOD Historical Data API token"
+    environment "EOD_API_TOKEN", "Your EOD Historical Data API token [required]"
+    environment "EOD_CACHE_DIR", "API cache diredctory [default: cache]"
+    environment "EOD_CACHE_LIFE", <<~EOF
+      API cache life. These formats are supported:
+      off - No cache
+      20s - 20 seconds
+      10m - 10 minutes
+      10h - 10 hours
+      10d - 10 days
+    EOF
 
     example "eod data AAPL.US"
     example "eod data AAPL.US --format csv period:m from:2022-01-01"
@@ -136,8 +145,6 @@ module EOD
       send_output get("bond-fundamentals/#{symbol}")
     end
 
-  private
-
     def send_output(data)
       if save
         say "saved #{save}"
@@ -151,6 +158,7 @@ module EOD
 
     def get(endpoint)
       case format
+      when :url           then api.url endpoint, params
       when :csv           then api.get_csv endpoint, params
       when :json, :pretty then api.get endpoint, params
       when :yaml          then api.get(endpoint, params).to_yaml
@@ -159,16 +167,17 @@ module EOD
       end
     end
 
+  private
+
     def disallow(disallowed_format)
       raise InputError, "The format #{format} is not supported for this command" if format == disallowed_format
     end
 
     def api
       @api ||= EOD::API.new api_token, 
-        use_cache: (ENV['EOD_CACHE_LIFE'] != '0'),
+        use_cache: (ENV['EOD_CACHE_LIFE'] != 'off'),
         cache_dir: ENV['EOD_CACHE_DIR'],
         cache_life: ENV['EOD_CACHE_LIFE']
-
     end
 
     def api_token

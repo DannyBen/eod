@@ -1,0 +1,17 @@
+Usage:
+  eod data SYMBOL [options] [PARAMS...]
+  eod bulk EXCHANGE [options] [PARAMS...]
+  eod live SYMBOL [options] [PARAMS...]
+  eod fundamental SYMBOL [options] [PARAMS...]
+  eod fundamental_bulk SYMBOL [options] [PARAMS...]
+  eod dividends SYMBOL [options] [PARAMS...]
+  eod splits SYMBOL [options] [PARAMS...]
+  eod technical SYMBOL [options] [PARAMS...]
+  eod intraday SYMBOL [options] [PARAMS...]
+  eod opts SYMBOL [options] [PARAMS...]
+  eod events [options] [PARAMS...]
+  eod insider [options] [PARAMS...]
+  eod calendar CALENDAR [options] [PARAMS...]
+  eod macro COUNTRY [options] [PARAMS...]
+  eod bond SYMBOL [options] [PARAMS...]
+  eod (-h|--help|--version)

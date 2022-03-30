@@ -1,0 +1,2 @@
+ERROR: EOD::InputError
+Invalid calendar invalid-calendar. Expecting earnings, trends, ipos or splits
