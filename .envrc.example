@@ -1,0 +1,3 @@
+export EOD_CACHE_DIR=cache
+export EOD_CACHE_LIFE=1d
+export EOD_API_TOKEN=xxxxxxxxxxxxxx.xxxxxxxx

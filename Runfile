@@ -1,0 +1,24 @@
+require "runfile-tasks"
+require "pretty_trace/enable-trim"
+require "lp"
+require_relative 'lib/eod'
+
+title   "EOD Developer Toolbelt"
+summary "Runfile tasks for building the EOD gem"
+version EOD::VERSION
+
+RunfileTasks::RubyGems.all 'eod'
+RunfileTasks::Testing.rspec
+RunfileTasks::Docs.rdoc
+
+help   "Run YARD server"
+action :yard do
+  system "yard server -p3000 -B0.0.0.0 -r"
+end
+
+help   "Run interactive console"
+action :console, :c do
+  system "bundle exec bin/console"
+end
+
+require_relative 'debug.rb' if File.exist? 'debug.rb'

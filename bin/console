@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "irb"
+require "irb/completion" # easy tab completion
+require "eod"
+
+include EOD
+
+IRB.start

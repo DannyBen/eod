@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require 'colsole'
+require 'eod'
+require 'eod/cli'
+include Colsole
+
+runner = EOD::CLI.runner
+
+begin
+  exit runner.run ARGV
+
+rescue Interrupt
+  say "\nGoodbye"
+  exit 1  
+
+rescue => e
+  if ENV['DEBUG']
+    puts e.backtrace.reverse 
+    say ""
+  end
+  say "!undred!ERROR: #{e.class}"
+  say e.message
+  exit 1
+
+end
