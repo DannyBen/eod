@@ -112,6 +112,9 @@ Environment Variables:
     10h - 10 hours
     10d - 10 days
 
+  EOD_API_URI
+    Override the API URI [default: https://eodhistoricaldata.com/api]
+
 Examples:
   eod data AAPL.US
   eod data AAPL.US --format csv period:m from:2022-01-01

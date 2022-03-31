@@ -67,6 +67,7 @@ module EOD
       10h - 10 hours
       10d - 10 days
     EOF
+    environment "EOD_API_URI", "Override the API URI [default: #{EOD::API.base_uri}]"
 
     example "eod data AAPL.US"
     example "eod data AAPL.US --format csv period:m from:2022-01-01"
@@ -174,10 +175,13 @@ module EOD
     end
 
     def api
-      @api ||= EOD::API.new api_token, 
-        use_cache: (ENV['EOD_CACHE_LIFE'] != 'off'),
-        cache_dir: ENV['EOD_CACHE_DIR'],
-        cache_life: ENV['EOD_CACHE_LIFE']
+      @api ||= begin
+        EOD::API.base_uri ENV['EOD_API_URI'] if ENV['EOD_API_URI']
+        EOD::API.new api_token, 
+          use_cache: (ENV['EOD_CACHE_LIFE'] != 'off'),
+          cache_dir: ENV['EOD_CACHE_DIR'],
+          cache_life: ENV['EOD_CACHE_LIFE']
+      end
     end
 
     def api_token

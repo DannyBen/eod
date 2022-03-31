@@ -8,23 +8,23 @@ Bundler.require :default, :development
 require 'eod/cli'
 include EOD
 
-# Public data, as published in the API docs
-def public_api_token
-  'OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX'
+ENV['EOD_CACHE_DIR'] = 'spec/cache'
+ENV['EOD_API_TOKEN'] = 'fake-test-token'
+
+def require_mock_server!
+  result = HTTParty.get('http://localhost:3000/')
+  result = JSON.parse result.body
+  raise "Please start the mock server" unless result['mockserver'] == 'online'
+rescue Errno::ECONNREFUSED
+  # :nocov:
+  raise "Please start the mock server"
+  # :nocov:
 end
 
-def public_eod_sumbol
-  'MCD.US'
-end
-
-ENV['EOD_API_TOKEN'] = public_api_token
-
-RSpec.configure do |config|
-  unless ENV['RSPEC_KEEP_CACHE']
-    config.before :suite do 
-      puts "Running spec_helper > before :suite"
-      puts "Flushing cache"
-      APICake::Base.new.cache.flush
-    end
+RSpec.configure do |c|
+  c.before :suite do
+    require_mock_server!
+    system 'mkdir -p spec/tmp'
+    API.base_uri "http://localhost:3000/"
   end
 end

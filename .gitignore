@@ -10,4 +10,6 @@
 /out.csv
 /out.json
 /out.yaml
+/spec/cache
+/spec/tmp
 /tmp

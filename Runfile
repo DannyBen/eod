@@ -21,4 +21,10 @@ action :console, :c do
   system "bundle exec bin/console"
 end
 
-require_relative 'debug.rb' if File.exist? 'debug.rb'
+help   "Run test mock server"
+usage  "mockserver"
+action :mockserver do |args|
+  exec "ruby spec/mock_api/server.rb"
+end
+
+require './debug.rb' if File.exist? 'debug.rb'

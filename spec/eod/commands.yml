@@ -1,0 +1,20 @@
+bond: bond SYMBOL -furl
+bulk: bulk EXCHANGE param:value -furl
+calendar: calendar earnings -furl
+data-csv: data SYMBOL -fcsv
+data-yaml: data SYMBOL -fyaml
+data-pretty: data SYMBOL
+data: data SYMBOL -furl
+dividends: dividends SYMBOL -furl
+events: events -furl
+fundamental: fundamental SYMBOL -furl
+fundamental_bulk: fundamental_bulk SYMBOL -furl
+help: --help
+insider: insider -furl
+intraday: intraday SYMBOL -furl
+live: live SYMBOL -furl
+macro: macro COUNTRY -furl
+opts: opts SYMBOL -furl
+splits: splits SYMBOL -furl
+technical: technical SYMBOL -furl
+usage: ''

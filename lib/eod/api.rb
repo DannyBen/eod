@@ -4,7 +4,7 @@ module EOD
   # Provides access to all the EOD API endpoints with dynamic methods
   # anc caching.
   class API < APICake::Base
-    base_uri 'https://eodhistoricaldata.com/api/'
+    base_uri 'https://eodhistoricaldata.com/api'
 
     attr_reader :api_token
 
