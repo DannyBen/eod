@@ -2,6 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/eod.svg)](https://badge.fury.io/rb/eod)
 [![Build Status](https://github.com/DannyBen/eod/workflows/Test/badge.svg)](https://github.com/DannyBen/eod/actions?query=workflow%3ATest)
+[![Maintainability](https://api.codeclimate.com/v1/badges/52438abcc1532b93b525/maintainability)](https://codeclimate.com/github/DannyBen/eod/maintainability)
 
 ---
 
