@@ -9,38 +9,50 @@ module EOD
     help "EOD Historical Data API"
     version EOD::VERSION
 
-    usage "eod data SYMBOL [options] [PARAMS...]"
+    usage "eod bond SYMBOL [options] [PARAMS...]"
     usage "eod bulk EXCHANGE [options] [PARAMS...]"
-    usage "eod live SYMBOL [options] [PARAMS...]"
+    usage "eod calendar CALENDAR [options] [PARAMS...]"
+    usage "eod data SYMBOL [options] [PARAMS...]"
+    usage "eod dividends SYMBOL [options] [PARAMS...]"
+    usage "eod events [options] [PARAMS...]"
+    usage "eod exchange EXCHANGE [options] [PARAMS...]"
+    usage "eod exchanges [options] [PARAMS...]"
     usage "eod fundamental SYMBOL [options] [PARAMS...]"
     usage "eod fundamental_bulk SYMBOL [options] [PARAMS...]"
-    usage "eod dividends SYMBOL [options] [PARAMS...]"
-    usage "eod splits SYMBOL [options] [PARAMS...]"
-    usage "eod technical SYMBOL [options] [PARAMS...]"
-    usage "eod intraday SYMBOL [options] [PARAMS...]"
-    usage "eod opts SYMBOL [options] [PARAMS...]"
-    usage "eod events [options] [PARAMS...]"
     usage "eod insider [options] [PARAMS...]"
-    usage "eod calendar CALENDAR [options] [PARAMS...]"
+    usage "eod intraday SYMBOL [options] [PARAMS...]"
+    usage "eod live SYMBOL [options] [PARAMS...]"
     usage "eod macro COUNTRY [options] [PARAMS...]"
-    usage "eod bond SYMBOL [options] [PARAMS...]"
+    usage "eod news [options] [PARAMS...]"
+    usage "eod opts SYMBOL [options] [PARAMS...]"
+    usage "eod screener [options] [PARAMS...]"
+    usage "eod search QUERY [options] [PARAMS...]"
+    usage "eod splits SYMBOL [options] [PARAMS...]"
+    usage "eod symbols EXCHANGE [options] [PARAMS...]"
+    usage "eod technical SYMBOL [options] [PARAMS...]"
     usage "eod (-h|--help|--version)"
 
-    command "data", "Download historical EOD data (/eod)"
-    command "bulk", "Download historical EOD bulk data (/eod-bulk-last-day)"
-    command "live", "Download live data (/real-time)"
-    command "fundamental", "Download fundamental data (/fundamentals)"
-    command "fundamental_bulk", "Download bulk fundamental data (/bulk-fundamentals)"
-    command "dividends", "Download dividends data (/div)"
-    command "splits", "Download splits data (/splits)"
-    command "technical", "Download technical data (/technical)"
-    command "intraday", "Download intraday data (/intraday)"
-    command "opts", "Download options data (/options)"
-    command "events", "Download economic events data (/economic-events)"
-    command "insider", "Download insider transactions data (/insider-transactions)"
-    command "calendar", "Download calendar data (earnings, trends, IPOs and splits) (/calendar)"
-    command "macro", "Download macroeconomics data (/macro-indicator)"
-    command "bond", "Download bond fundamental data (/bond-fundamentals)"
+    command "bond", "Bond fundamental data (/bond-fundamentals)"
+    command "bulk", "Historical EOD bulk data (/eod-bulk-last-day)"
+    command "calendar", "Calendar data (earnings, trends, IPOs and splits) (/calendar)"
+    command "data", "Historical EOD data (/eod)"
+    command "dividends", "Dividends data (/div)"
+    command "events", "Economic events data (/economic-events)"
+    command "exchange", "Details about an exchange (/exchanges-details)"
+    command "exchanges", "List of exchanges (/exchanges-list)"
+    command "fundamental", "Fundamental data (/fundamentals)"
+    command "fundamental_bulk", "Bulk fundamental data (/bulk-fundamentals)"
+    command "insider", "Insider transactions data (/insider-transactions)"
+    command "intraday", "Intraday data (/intraday)"
+    command "live", "Live data (/real-time)"
+    command "macro", "Macroeconomics data (/macro-indicator)"
+    command "news", "Financial news (/news)"
+    command "opts", "Options data (/options)"
+    command "screener", "Stock market screener (/screener)"
+    command "search", "Search for stocks, ETFs, funds or indices (/search)"
+    command "splits", "Splits data (/splits)"
+    command "symbols", "List of symbols for an exchange (/exchange-symbol-list)"
+    command "technical", "Technical data (/technical)"
 
     option "-f --format FORMAT", "Output format: csv, json, yaml, pretty or url [default: pretty]"
     option "-s --save PATH", "Save output to file"
@@ -69,6 +81,7 @@ module EOD
     EOF
     environment "EOD_API_URI", "Override the API URI [default: #{EOD::API.base_uri}]"
 
+    example "eod symbols NASDAQ"
     example "eod data AAPL.US"
     example "eod data AAPL.US --format csv period:m from:2022-01-01"
     example "eod live AAPL.US -fyaml"
@@ -76,55 +89,13 @@ module EOD
     example "eod technical AAPL.US function:sma"
     example "eod macro USA indicator:inflation_consumer_prices_annual"
 
-    def data_command
-      send_output get("eod/#{symbol}")
+    def bond_command
+      disallow :csv
+      send_output get("bond-fundamentals/#{symbol}")
     end
 
     def bulk_command
       send_output get("eod-bulk-last-day/#{exchange}")
-    end
-
-    def live_command
-      send_output get("real-time/#{symbol}")
-    end
-
-    def fundamental_command
-      disallow :csv
-      send_output get("fundamentals/#{symbol}")
-    end
-
-    def fundamental_bulk_command
-      disallow :csv
-      send_output get("bulk-fundamentals/#{symbol}")
-    end
-
-    def dividends_command
-      send_output get("div/#{symbol}")
-    end
-
-    def splits_command
-      send_output get("splits/#{symbol}")
-    end
-
-    def technical_command
-      send_output get("technical/#{symbol}")
-    end
-
-    def intraday_command
-      send_output get("intraday/#{symbol}")
-    end
-
-    def opts_command
-      disallow :csv
-      send_output get("options/#{symbol}")
-    end
-
-    def events_command
-      send_output get("economic-events")
-    end
-
-    def insider_command
-      send_output get("insider-transactions")
     end
 
     def calendar_command
@@ -137,13 +108,81 @@ module EOD
       send_output get("calendar/#{calendar}")
     end
 
+    def data_command
+      send_output get("eod/#{symbol}")
+    end
+
+    def dividends_command
+      send_output get("div/#{symbol}")
+    end
+
+    def events_command
+      send_output get("economic-events")
+    end
+
+    def exchange_command
+      disallow :csv
+      send_output get("exchange-details/#{exchange}")
+    end
+
+    def exchanges_command
+      send_output get("exchanges-list")
+    end
+
+    def fundamental_command
+      disallow :csv
+      send_output get("fundamentals/#{symbol}")
+    end
+
+    def fundamental_bulk_command
+      disallow :csv
+      send_output get("bulk-fundamentals/#{symbol}")
+    end
+
+    def insider_command
+      send_output get("insider-transactions")
+    end
+
+    def intraday_command
+      send_output get("intraday/#{symbol}")
+    end
+
+    def live_command
+      send_output get("real-time/#{symbol}")
+    end
+
     def macro_command
       send_output get("macro-indicator/#{country}")
-    end    
+    end
 
-    def bond_command
+    def news_command
       disallow :csv
-      send_output get("bond-fundamentals/#{symbol}")
+      send_output get("news")
+    end
+
+    def opts_command
+      disallow :csv
+      send_output get("options/#{symbol}")
+    end
+
+    def screener_command
+      send_output get("screener")
+    end
+
+    def search_command
+      send_output get("search/#{query.uri_encode}")
+    end
+
+    def splits_command
+      send_output get("splits/#{symbol}")
+    end
+
+    def symbols_command
+      send_output get("exchange-symbol-list/#{exchange}")
+    end
+
+    def technical_command
+      send_output get("technical/#{symbol}")
     end
 
     def send_output(data)
@@ -210,6 +249,10 @@ module EOD
 
     def exchange
       args['EXCHANGE']
+    end
+
+    def query
+      args['QUERY']
     end
 
     def format

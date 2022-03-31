@@ -1,5 +1,13 @@
+require 'cgi'
+
 module EOD
   module Refinements
+    refine String do
+      def uri_encode
+        CGI.escape(self).gsub('+', '%20')
+      end
+    end
+
     refine Array do
       # Convert a params array like [key:value, key:value] to a hash like
       # {key: value, key: value}

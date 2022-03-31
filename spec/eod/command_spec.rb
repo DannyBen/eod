@@ -9,7 +9,8 @@ describe Command do
   config.each do |name, command|
     context name do
       it "works" do
-        expect { subject.run command.split(' ') }.to output_approval("cli/#{name}")
+        args = command.is_a?(Array) ? command : command.split(' ')
+        expect { subject.run args }.to output_approval("cli/#{name}")
       end
     end
   end

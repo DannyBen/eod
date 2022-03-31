@@ -27,4 +27,14 @@ action :mockserver do |args|
   exec "ruby spec/mock_api/server.rb"
 end
 
+help   "Inject the --help output to the README"
+action :'readme-patch' do
+  tag = "<!-- USAGE -->"
+  help = `bundle exec eod --help`
+  readme = File.read 'README.md'
+  output = readme.gsub /#{tag}(.*)#{tag}/m, "#{tag}\n#{help}\n#{tag}"
+  File.write 'README.md', output
+end
+
+
 require './debug.rb' if File.exist? 'debug.rb'

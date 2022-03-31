@@ -1,68 +1,92 @@
 EOD Historical Data API
 
 Usage:
-  eod data SYMBOL [options] [PARAMS...]
+  eod bond SYMBOL [options] [PARAMS...]
   eod bulk EXCHANGE [options] [PARAMS...]
-  eod live SYMBOL [options] [PARAMS...]
+  eod calendar CALENDAR [options] [PARAMS...]
+  eod data SYMBOL [options] [PARAMS...]
+  eod dividends SYMBOL [options] [PARAMS...]
+  eod events [options] [PARAMS...]
+  eod exchange EXCHANGE [options] [PARAMS...]
+  eod exchanges [options] [PARAMS...]
   eod fundamental SYMBOL [options] [PARAMS...]
   eod fundamental_bulk SYMBOL [options] [PARAMS...]
-  eod dividends SYMBOL [options] [PARAMS...]
-  eod splits SYMBOL [options] [PARAMS...]
-  eod technical SYMBOL [options] [PARAMS...]
-  eod intraday SYMBOL [options] [PARAMS...]
-  eod opts SYMBOL [options] [PARAMS...]
-  eod events [options] [PARAMS...]
   eod insider [options] [PARAMS...]
-  eod calendar CALENDAR [options] [PARAMS...]
+  eod intraday SYMBOL [options] [PARAMS...]
+  eod live SYMBOL [options] [PARAMS...]
   eod macro COUNTRY [options] [PARAMS...]
-  eod bond SYMBOL [options] [PARAMS...]
+  eod news [options] [PARAMS...]
+  eod opts SYMBOL [options] [PARAMS...]
+  eod screener [options] [PARAMS...]
+  eod search QUERY [options] [PARAMS...]
+  eod splits SYMBOL [options] [PARAMS...]
+  eod symbols EXCHANGE [options] [PARAMS...]
+  eod technical SYMBOL [options] [PARAMS...]
   eod (-h|--help|--version)
 
 Commands:
-  data
-    Download historical EOD data (/eod)
+  bond
+    Bond fundamental data (/bond-fundamentals)
 
   bulk
-    Download historical EOD bulk data (/eod-bulk-last-day)
-
-  live
-    Download live data (/real-time)
-
-  fundamental
-    Download fundamental data (/fundamentals)
-
-  fundamental_bulk
-    Download bulk fundamental data (/bulk-fundamentals)
-
-  dividends
-    Download dividends data (/div)
-
-  splits
-    Download splits data (/splits)
-
-  technical
-    Download technical data (/technical)
-
-  intraday
-    Download intraday data (/intraday)
-
-  opts
-    Download options data (/options)
-
-  events
-    Download economic events data (/economic-events)
-
-  insider
-    Download insider transactions data (/insider-transactions)
+    Historical EOD bulk data (/eod-bulk-last-day)
 
   calendar
-    Download calendar data (earnings, trends, IPOs and splits) (/calendar)
+    Calendar data (earnings, trends, IPOs and splits) (/calendar)
+
+  data
+    Historical EOD data (/eod)
+
+  dividends
+    Dividends data (/div)
+
+  events
+    Economic events data (/economic-events)
+
+  exchange
+    Details about an exchange (/exchanges-details)
+
+  exchanges
+    List of exchanges (/exchanges-list)
+
+  fundamental
+    Fundamental data (/fundamentals)
+
+  fundamental_bulk
+    Bulk fundamental data (/bulk-fundamentals)
+
+  insider
+    Insider transactions data (/insider-transactions)
+
+  intraday
+    Intraday data (/intraday)
+
+  live
+    Live data (/real-time)
 
   macro
-    Download macroeconomics data (/macro-indicator)
+    Macroeconomics data (/macro-indicator)
 
-  bond
-    Download bond fundamental data (/bond-fundamentals)
+  news
+    Financial news (/news)
+
+  opts
+    Options data (/options)
+
+  screener
+    Stock market screener (/screener)
+
+  search
+    Search for stocks, ETFs, funds or indices (/search)
+
+  splits
+    Splits data (/splits)
+
+  symbols
+    List of symbols for an exchange (/exchange-symbol-list)
+
+  technical
+    Technical data (/technical)
 
 Options:
   -f --format FORMAT
@@ -116,6 +140,7 @@ Environment Variables:
     Override the API URI [default: https://eodhistoricaldata.com/api]
 
 Examples:
+  eod symbols NASDAQ
   eod data AAPL.US
   eod data AAPL.US --format csv period:m from:2022-01-01
   eod live AAPL.US -fyaml

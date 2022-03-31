@@ -2,11 +2,13 @@ bond: bond SYMBOL -furl
 bulk: bulk EXCHANGE param:value -furl
 calendar: calendar earnings -furl
 data-csv: data SYMBOL -fcsv
-data-yaml: data SYMBOL -fyaml
 data-pretty: data SYMBOL
+data-yaml: data SYMBOL -fyaml
 data: data SYMBOL -furl
 dividends: dividends SYMBOL -furl
 events: events -furl
+exchange: exchange US -furl
+exchanges: exchanges -furl
 fundamental: fundamental SYMBOL -furl
 fundamental_bulk: fundamental_bulk SYMBOL -furl
 help: --help
@@ -14,7 +16,11 @@ insider: insider -furl
 intraday: intraday SYMBOL -furl
 live: live SYMBOL -furl
 macro: macro COUNTRY -furl
+news: news -furl
 opts: opts SYMBOL -furl
+screener: screener -furl
+search: [search, new relic, -furl]
 splits: splits SYMBOL -furl
+symbols: symbols NASDAQ -furl
 technical: technical SYMBOL -furl
 usage: ''

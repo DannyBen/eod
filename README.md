@@ -6,7 +6,7 @@
 ---
 
 This gem provides both a Ruby library and a command line interface for the 
-[EOD Historical Data][1] data service.
+[EOD Historical Data][docs] data service.
 
 ---
 
@@ -166,7 +166,7 @@ patterns.
 
 ## Caching
 
-We are using the [Lightly][2] gem for automatic HTTP caching.
+We are using the [Lightly][lightly] gem for automatic HTTP caching.
 
 You can disable or customize it by either passing options on 
 initialization, or by accessing the `WebCache` object directly at 
@@ -210,71 +210,96 @@ The cache life argument supports these formats:
 ```
 $ eod --help
 
+<!-- USAGE -->
 EOD Historical Data API
 
 Usage:
-  eod data SYMBOL [options] [PARAMS...]
+  eod bond SYMBOL [options] [PARAMS...]
   eod bulk EXCHANGE [options] [PARAMS...]
-  eod live SYMBOL [options] [PARAMS...]
+  eod calendar CALENDAR [options] [PARAMS...]
+  eod data SYMBOL [options] [PARAMS...]
+  eod dividends SYMBOL [options] [PARAMS...]
+  eod events [options] [PARAMS...]
+  eod exchange EXCHANGE [options] [PARAMS...]
+  eod exchanges [options] [PARAMS...]
   eod fundamental SYMBOL [options] [PARAMS...]
   eod fundamental_bulk SYMBOL [options] [PARAMS...]
-  eod dividends SYMBOL [options] [PARAMS...]
-  eod splits SYMBOL [options] [PARAMS...]
-  eod technical SYMBOL [options] [PARAMS...]
-  eod intraday SYMBOL [options] [PARAMS...]
-  eod opts SYMBOL [options] [PARAMS...]
-  eod events [options] [PARAMS...]
   eod insider [options] [PARAMS...]
-  eod calendar CALENDAR [options] [PARAMS...]
+  eod intraday SYMBOL [options] [PARAMS...]
+  eod live SYMBOL [options] [PARAMS...]
   eod macro COUNTRY [options] [PARAMS...]
-  eod bond SYMBOL [options] [PARAMS...]
+  eod news [options] [PARAMS...]
+  eod opts SYMBOL [options] [PARAMS...]
+  eod screener [options] [PARAMS...]
+  eod search QUERY [options] [PARAMS...]
+  eod splits SYMBOL [options] [PARAMS...]
+  eod symbols EXCHANGE [options] [PARAMS...]
+  eod technical SYMBOL [options] [PARAMS...]
   eod (-h|--help|--version)
 
 Commands:
-  data
-    Download historical EOD data (/eod)
+  bond
+    Bond fundamental data (/bond-fundamentals)
 
   bulk
-    Download historical EOD bulk data (/eod-bulk-last-day)
-
-  live
-    Download live data (/real-time)
-
-  fundamental
-    Download fundamental data (/fundamentals)
-
-  fundamental_bulk
-    Download bulk fundamental data (/bulk-fundamentals)
-
-  dividends
-    Download dividends data (/div)
-
-  splits
-    Download splits data (/splits)
-
-  technical
-    Download technical data (/technical)
-
-  intraday
-    Download intraday data (/intraday)
-
-  opts
-    Download options data (/options)
-
-  events
-    Download economic events data (/economic-events)
-
-  insider
-    Download insider transactions data (/insider-transactions)
+    Historical EOD bulk data (/eod-bulk-last-day)
 
   calendar
-    Download calendar data (earnings, trends, IPOs and splits) (/calendar)
+    Calendar data (earnings, trends, IPOs and splits) (/calendar)
+
+  data
+    Historical EOD data (/eod)
+
+  dividends
+    Dividends data (/div)
+
+  events
+    Economic events data (/economic-events)
+
+  exchange
+    Details about an exchange (/exchanges-details)
+
+  exchanges
+    List of exchanges (/exchanges-list)
+
+  fundamental
+    Fundamental data (/fundamentals)
+
+  fundamental_bulk
+    Bulk fundamental data (/bulk-fundamentals)
+
+  insider
+    Insider transactions data (/insider-transactions)
+
+  intraday
+    Intraday data (/intraday)
+
+  live
+    Live data (/real-time)
 
   macro
-    Download macroeconomics data (/macro-indicator)
+    Macroeconomics data (/macro-indicator)
 
-  bond
-    Download bond fundamental data (/bond-fundamentals)
+  news
+    Financial news (/news)
+
+  opts
+    Options data (/options)
+
+  screener
+    Stock market screener (/screener)
+
+  search
+    Search for stocks, ETFs, funds or indices (/search)
+
+  splits
+    Splits data (/splits)
+
+  symbols
+    List of symbols for an exchange (/exchange-symbol-list)
+
+  technical
+    Technical data (/technical)
 
 Options:
   -f --format FORMAT
@@ -328,6 +353,7 @@ Environment Variables:
     Override the API URI [default: https://eodhistoricaldata.com/api]
 
 Examples:
+  eod symbols NASDAQ
   eod data AAPL.US
   eod data AAPL.US --format csv period:m from:2022-01-01
   eod live AAPL.US -fyaml
@@ -335,9 +361,17 @@ Examples:
   eod technical AAPL.US function:sma
   eod macro USA indicator:inflation_consumer_prices_annual
 
+<!-- USAGE -->
+
 ````
 
+## Contributing / Support
+
+If you experience any issue, have a question or a suggestion, or if you wish
+to contribute, feel free to [open an issue][issues].
 
 
-[1]: https://eodhistoricaldata.com/financial-apis
-[2]: https://github.com/DannyBen/lightly
+
+[docs]: https://eodhistoricaldata.com/financial-apis
+[issues]: https://github.com/DannyBen/eod/issues
+[lightly]: https://github.com/DannyBen/lightly
