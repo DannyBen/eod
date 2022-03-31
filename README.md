@@ -368,6 +368,7 @@ Examples:
   eod technical AAPL.US function:sma
   eod macro USA indicator:inflation_consumer_prices_annual
 
+
 ```
 <!-- USAGE -->
 
