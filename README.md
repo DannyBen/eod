@@ -130,8 +130,6 @@ Or, to save CSV, use the `save_csv` method:
 api.save_csv "filename.csv", "eod/AAPL.US", period: 'm'
 ```
 
-
-
 ## Command Line Interface
 
 The command line utility `eod` that is installed when installing the gem acts
@@ -162,6 +160,12 @@ $ eod data AAPL.US --format csv --save aapl.csv from:2022-01-01 period:m
 
 Run [`eod --help`](#full-command-line-usage-patterns) for the full list of usage
 patterns.
+
+## Supported endpoints
+
+- The Ruby library supports all current and future endpoints.
+- The CLI supports most (if not all) current endpoints. If you know of an
+  endpoint that is not supported, please create an [issue][issues].
 
 
 ## Caching
@@ -212,6 +216,9 @@ $ eod --help
 
 <!-- USAGE -->
 EOD Historical Data API
+
+  API Documentation:
+  https://eodhistoricaldata.com/financial-apis/
 
 Usage:
   eod bond SYMBOL [options] [PARAMS...]
@@ -363,7 +370,8 @@ Examples:
 
 <!-- USAGE -->
 
-````
+```
+
 
 ## Contributing / Support
 
