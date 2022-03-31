@@ -179,18 +179,18 @@ a later stage.
 
 ```ruby
 # Disable cache completely
-api = EOD::API.new api_token,  use_cache: true
+api = EOD::API.new api_token,  use_cache: false
 
 # Set different cache directory or lifetime
 api = EOD::API.new api_token, cache_dir: 'data', cache_ilfe: '2h'
 
-# or 
+# Or configure cache after initializaation:
 
-intrinio = Intrinio::API.new username: user, password: pass
-intrinio.cache.disable
-intrinio.cache.enable
-intrinio.cache.dir = 'tmp/cache'   # Change cache folder
-intrinio.cache.life = '30m'        # Change cache life to 30 minutes
+api = EOD::API.new api_token
+api.cache.disable
+api.cache.enable
+api.cache.dir = 'tmp/cache'   # Change cache folder
+api.cache.life = '30m'        # Change cache life to 30 minutes
 ```
 
 To enable caching for the command line, simply set one or both of 
