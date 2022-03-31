@@ -211,10 +211,10 @@ The cache life argument supports these formats:
 
 ## Full command line usage patterns
 
+<!-- USAGE -->
 ```
 $ eod --help
 
-<!-- USAGE -->
 EOD Historical Data API
 
   API Documentation:
@@ -368,9 +368,8 @@ Examples:
   eod technical AAPL.US function:sma
   eod macro USA indicator:inflation_consumer_prices_annual
 
-<!-- USAGE -->
-
 ```
+<!-- USAGE -->
 
 
 ## Contributing / Support

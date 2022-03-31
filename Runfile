@@ -31,8 +31,10 @@ help   "Inject the --help output to the README"
 action :'readme-patch' do
   tag = "<!-- USAGE -->"
   help = `bundle exec eod --help`
+  header = "```\n$ eod --help\n"
+  footer = "\n```"
   readme = File.read 'README.md'
-  output = readme.gsub /#{tag}(.*)#{tag}/m, "#{tag}\n#{help}\n#{tag}"
+  output = readme.gsub /#{tag}(.*)#{tag}/m, "#{tag}\n#{header}\n#{help}\n#{footer}\n#{tag}"
   File.write 'README.md', output
 end
 
