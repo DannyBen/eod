@@ -9,6 +9,8 @@
 This gem provides both a Ruby library and a command line interface for the 
 [EOD Historical Data][docs] data service.
 
+This gem is not affiliated with EOD Historical Data.
+
 ---
 
 
