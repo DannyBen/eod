@@ -20,4 +20,11 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'mister_bin', '~> 0.7'
   s.add_runtime_dependency 'lp', '~> 0.2'
   s.add_runtime_dependency 'apicake', '~> 0.1'
+
+  s.metadata = {
+    "bug_tracker_uri"   => "https://github.com/DannyBen/eod/issues",
+    "changelog_uri"     => "https://github.com/DannyBen/eod/blob/master/CHANGELOG.md",
+    "homepage_uri"      => "https://github.com/DannyBen/eod",
+    "source_code_uri"   => "https://github.com/DannyBen/eod",
+  }
 end

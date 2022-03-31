@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Command do
   subject { CLI.runner }
-
-  config = YAML.load_file 'spec/eod/commands.yml'
+  before { require_mock_server! }
 
   # Test all commands as defined in the spec config
+  config = YAML.load_file 'spec/eod/commands.yml'
   config.each do |name, command|
     context name do
       it "works" do

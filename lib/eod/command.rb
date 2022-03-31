@@ -6,7 +6,7 @@ module EOD
   class Command < MisterBin::Command
     using EOD::Refinements
 
-    help "EOD Historical Data API"
+    help "EOD Historical Data API\n\n  API Documentation:\n  https://eodhistoricaldata.com/financial-apis/"
     version EOD::VERSION
 
     usage "eod bond SYMBOL [options] [PARAMS...]"

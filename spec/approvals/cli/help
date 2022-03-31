@@ -1,5 +1,8 @@
 EOD Historical Data API
 
+  API Documentation:
+  https://eodhistoricaldata.com/financial-apis/
+
 Usage:
   eod bond SYMBOL [options] [PARAMS...]
   eod bulk EXCHANGE [options] [PARAMS...]

@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe API do
+  before { require_mock_server! }
   subject { API.new api_token, use_cache: false }
-  let(:api_token) { 'fake-test-token' }
+  let(:api_token) { FAKE_API_TOKEN }
 
   describe '#new' do
     it "initializes with api token" do

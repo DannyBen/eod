@@ -8,8 +8,9 @@ Bundler.require :default, :development
 require 'eod/cli'
 include EOD
 
+FAKE_API_TOKEN = 'fake-test-token'
 ENV['EOD_CACHE_DIR'] = 'spec/cache'
-ENV['EOD_API_TOKEN'] = 'fake-test-token'
+ENV['EOD_API_TOKEN'] = FAKE_API_TOKEN
 
 def require_mock_server!
   result = HTTParty.get('http://localhost:3000/')
@@ -22,9 +23,13 @@ rescue Errno::ECONNREFUSED
 end
 
 RSpec.configure do |c|
+  c.filter_run_excluding :require_test_api_token unless ENV['EOD_TEST_API_TOKEN']
+
   c.before :suite do
-    require_mock_server!
-    system 'mkdir -p spec/tmp'
-    API.base_uri "http://localhost:3000/"
+    PRODUCTION_API_BASE = API.base_uri
+    TEST_API_BASE = "http://localhost:3000/"
+    API.base_uri TEST_API_BASE
+    
+    system 'mkdir -p spec/tmp && rm -rf spec/cache'
   end
 end

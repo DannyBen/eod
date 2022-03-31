@@ -1,0 +1,8 @@
+# All these endpoints should work with the public API key
+# Public token: OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX
+
+# Start the command with ! in order to keep it as is (raw)
+# When not set, all digits will be replaced with # to ensure test consistency
+data-url: "! data AAPL.US -furl period:m from:2022-01-01"
+data-csv: data AAPL.US -fcsv period:m from:2022-01-01
+live: live AAPL.US
