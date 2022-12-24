@@ -9,85 +9,85 @@ module EOD
     help "EOD Historical Data API\n\n  API Documentation:\n  https://eodhistoricaldata.com/financial-apis/"
     version EOD::VERSION
 
-    usage "eod bond SYMBOL [options] [PARAMS...]"
-    usage "eod bulk EXCHANGE [options] [PARAMS...]"
-    usage "eod calendar CALENDAR [options] [PARAMS...]"
-    usage "eod data SYMBOL [options] [PARAMS...]"
-    usage "eod dividends SYMBOL [options] [PARAMS...]"
-    usage "eod events [options] [PARAMS...]"
-    usage "eod exchange EXCHANGE [options] [PARAMS...]"
-    usage "eod exchanges [options] [PARAMS...]"
-    usage "eod fundamental SYMBOL [options] [PARAMS...]"
-    usage "eod fundamental_bulk SYMBOL [options] [PARAMS...]"
-    usage "eod insider [options] [PARAMS...]"
-    usage "eod intraday SYMBOL [options] [PARAMS...]"
-    usage "eod live SYMBOL [options] [PARAMS...]"
-    usage "eod macro COUNTRY [options] [PARAMS...]"
-    usage "eod news [options] [PARAMS...]"
-    usage "eod opts SYMBOL [options] [PARAMS...]"
-    usage "eod screener [options] [PARAMS...]"
-    usage "eod search QUERY [options] [PARAMS...]"
-    usage "eod splits SYMBOL [options] [PARAMS...]"
-    usage "eod symbols EXCHANGE [options] [PARAMS...]"
-    usage "eod technical SYMBOL [options] [PARAMS...]"
-    usage "eod (-h|--help|--version)"
+    usage 'eod bond SYMBOL [options] [PARAMS...]'
+    usage 'eod bulk EXCHANGE [options] [PARAMS...]'
+    usage 'eod calendar CALENDAR [options] [PARAMS...]'
+    usage 'eod data SYMBOL [options] [PARAMS...]'
+    usage 'eod dividends SYMBOL [options] [PARAMS...]'
+    usage 'eod events [options] [PARAMS...]'
+    usage 'eod exchange EXCHANGE [options] [PARAMS...]'
+    usage 'eod exchanges [options] [PARAMS...]'
+    usage 'eod fundamental SYMBOL [options] [PARAMS...]'
+    usage 'eod fundamental_bulk SYMBOL [options] [PARAMS...]'
+    usage 'eod insider [options] [PARAMS...]'
+    usage 'eod intraday SYMBOL [options] [PARAMS...]'
+    usage 'eod live SYMBOL [options] [PARAMS...]'
+    usage 'eod macro COUNTRY [options] [PARAMS...]'
+    usage 'eod news [options] [PARAMS...]'
+    usage 'eod opts SYMBOL [options] [PARAMS...]'
+    usage 'eod screener [options] [PARAMS...]'
+    usage 'eod search QUERY [options] [PARAMS...]'
+    usage 'eod splits SYMBOL [options] [PARAMS...]'
+    usage 'eod symbols EXCHANGE [options] [PARAMS...]'
+    usage 'eod technical SYMBOL [options] [PARAMS...]'
+    usage 'eod (-h|--help|--version)'
 
-    command "bond", "Bond fundamental data (/bond-fundamentals)"
-    command "bulk", "Historical EOD bulk data (/eod-bulk-last-day)"
-    command "calendar", "Calendar data (earnings, trends, IPOs and splits) (/calendar)"
-    command "data", "Historical EOD data (/eod)"
-    command "dividends", "Dividends data (/div)"
-    command "events", "Economic events data (/economic-events)"
-    command "exchange", "Details about an exchange (/exchanges-details)"
-    command "exchanges", "List of exchanges (/exchanges-list)"
-    command "fundamental", "Fundamental data (/fundamentals)"
-    command "fundamental_bulk", "Bulk fundamental data (/bulk-fundamentals)"
-    command "insider", "Insider transactions data (/insider-transactions)"
-    command "intraday", "Intraday data (/intraday)"
-    command "live", "Live data (/real-time)"
-    command "macro", "Macroeconomics data (/macro-indicator)"
-    command "news", "Financial news (/news)"
-    command "opts", "Options data (/options)"
-    command "screener", "Stock market screener (/screener)"
-    command "search", "Search for stocks, ETFs, funds or indices (/search)"
-    command "splits", "Splits data (/splits)"
-    command "symbols", "List of symbols for an exchange (/exchange-symbol-list)"
-    command "technical", "Technical data (/technical)"
+    command 'bond', 'Bond fundamental data (/bond-fundamentals)'
+    command 'bulk', 'Historical EOD bulk data (/eod-bulk-last-day)'
+    command 'calendar', 'Calendar data (earnings, trends, IPOs and splits) (/calendar)'
+    command 'data', 'Historical EOD data (/eod)'
+    command 'dividends', 'Dividends data (/div)'
+    command 'events', 'Economic events data (/economic-events)'
+    command 'exchange', 'Details about an exchange (/exchanges-details)'
+    command 'exchanges', 'List of exchanges (/exchanges-list)'
+    command 'fundamental', 'Fundamental data (/fundamentals)'
+    command 'fundamental_bulk', 'Bulk fundamental data (/bulk-fundamentals)'
+    command 'insider', 'Insider transactions data (/insider-transactions)'
+    command 'intraday', 'Intraday data (/intraday)'
+    command 'live', 'Live data (/real-time)'
+    command 'macro', 'Macroeconomics data (/macro-indicator)'
+    command 'news', 'Financial news (/news)'
+    command 'opts', 'Options data (/options)'
+    command 'screener', 'Stock market screener (/screener)'
+    command 'search', 'Search for stocks, ETFs, funds or indices (/search)'
+    command 'splits', 'Splits data (/splits)'
+    command 'symbols', 'List of symbols for an exchange (/exchange-symbol-list)'
+    command 'technical', 'Technical data (/technical)'
 
-    option "-f --format FORMAT", "Output format: csv, json, yaml, pretty or url [default: pretty]"
-    option "-s --save PATH", "Save output to file"
+    option '-f --format FORMAT', 'Output format: csv, json, yaml, pretty or url [default: pretty]'
+    option '-s --save PATH', 'Save output to file'
 
-    param "SYMBOL", "Ticker symbol"
-    param "CALENDAR", "Calendar type: earnings, trends, ipos or splits"
-    param "COUNTRY", "Country code in the Alpha-3 ISO format"
-    param "EXCHANGE", "Exchange code"
-    param "PARAMS", <<~EOF
+    param 'SYMBOL', 'Ticker symbol'
+    param 'CALENDAR', 'Calendar type: earnings, trends, ipos or splits'
+    param 'COUNTRY', 'Country code in the Alpha-3 ISO format'
+    param 'EXCHANGE', 'Exchange code'
+    param 'PARAMS', <<~USAGE
       An optional list of query string parameters, separated by a space, to send with the request. \
       Each parameter should be in the format of key:value.
       example: period:w from:2022-01-01
 
       See https://eodhistoricaldata.com/financial-apis/ for all supported params.
-    EOF
-    
-    environment "EOD_API_TOKEN", "Your EOD Historical Data API token [required]"
-    environment "EOD_CACHE_DIR", "API cache diredctory [default: cache]"
-    environment "EOD_CACHE_LIFE", <<~EOF
+    USAGE
+
+    environment 'EOD_API_TOKEN', 'Your EOD Historical Data API token [required]'
+    environment 'EOD_CACHE_DIR', 'API cache diredctory [default: cache]'
+    environment 'EOD_CACHE_LIFE', <<~USAGE
       API cache life. These formats are supported:
       off - No cache
       20s - 20 seconds
       10m - 10 minutes
       10h - 10 hours
       10d - 10 days
-    EOF
-    environment "EOD_API_URI", "Override the API URI [default: #{EOD::API.base_uri}]"
+    USAGE
+    environment 'EOD_API_URI', "Override the API URI [default: #{EOD::API.base_uri}]"
 
-    example "eod symbols NASDAQ"
-    example "eod data AAPL.US"
-    example "eod data AAPL.US --format csv period:m from:2022-01-01"
-    example "eod live AAPL.US -fyaml"
+    example 'eod symbols NASDAQ'
+    example 'eod data AAPL.US'
+    example 'eod data AAPL.US --format csv period:m from:2022-01-01'
+    example 'eod live AAPL.US -fyaml'
     example "eod fundamental 'AAPL.US' filter:General"
-    example "eod technical AAPL.US function:sma"
-    example "eod macro USA indicator:inflation_consumer_prices_annual"
+    example 'eod technical AAPL.US function:sma'
+    example 'eod macro USA indicator:inflation_consumer_prices_annual'
 
     def bond_command
       disallow :csv
@@ -100,7 +100,7 @@ module EOD
 
     def calendar_command
       allowed = %w[earnings trends ipos splits]
-      
+
       unless allowed.include? calendar
         raise InputError, "Invalid calendar #{calendar}. Expecting earnings, trends, ipos or splits"
       end
@@ -117,7 +117,7 @@ module EOD
     end
 
     def events_command
-      send_output get("economic-events")
+      send_output get('economic-events')
     end
 
     def exchange_command
@@ -126,7 +126,7 @@ module EOD
     end
 
     def exchanges_command
-      send_output get("exchanges-list")
+      send_output get('exchanges-list')
     end
 
     def fundamental_command
@@ -140,7 +140,7 @@ module EOD
     end
 
     def insider_command
-      send_output get("insider-transactions")
+      send_output get('insider-transactions')
     end
 
     def intraday_command
@@ -157,7 +157,7 @@ module EOD
 
     def news_command
       disallow :csv
-      send_output get("news")
+      send_output get('news')
     end
 
     def opts_command
@@ -166,7 +166,7 @@ module EOD
     end
 
     def screener_command
-      send_output get("screener")
+      send_output get('screener')
     end
 
     def search_command
@@ -216,9 +216,9 @@ module EOD
     def api
       @api ||= begin
         EOD::API.base_uri ENV['EOD_API_URI'] if ENV['EOD_API_URI']
-        EOD::API.new api_token, 
-          use_cache: (ENV['EOD_CACHE_LIFE'] != 'off'),
-          cache_dir: ENV['EOD_CACHE_DIR'],
+        EOD::API.new api_token,
+          use_cache:  (ENV['EOD_CACHE_LIFE'] != 'off'),
+          cache_dir:  ENV['EOD_CACHE_DIR'],
           cache_life: ENV['EOD_CACHE_LIFE']
       end
     end
@@ -262,6 +262,5 @@ module EOD
     def save
       args['--save']
     end
-
   end
 end

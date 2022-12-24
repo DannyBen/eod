@@ -12,7 +12,7 @@ jobs:
       EOD_TEST_API_TOKEN: OeAFFmMliFG5orCUuwAKQ8l4WWFQ67YX
 
     strategy:
-      matrix: { ruby: ['2.7', '3.0', '3.1'] }
+      matrix: { ruby: ['2.7', '3.0', '3.1', head] }
 
     steps:
     - name: Checkout code

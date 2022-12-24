@@ -16,13 +16,13 @@ module EOD
     end
 
     def default_query
-      { api_token: api_token, fmt: :json } 
+      { api_token: api_token, fmt: :json }
     end
 
     def get_csv(*args)
-      payload = get! *args
+      payload = get!(*args)
 
-      if payload.response.code != "200"
+      if payload.response.code != '200'
         raise BadResponse, "#{payload.response.code} #{payload.response.msg}"
       end
 
@@ -31,12 +31,10 @@ module EOD
 
       header = data.first.keys
 
-      result = CSV.generate do |csv|
+      CSV.generate do |csv|
         csv << header
         data.each { |row| csv << row.values }
       end
-
-      result
     end
   end
 end

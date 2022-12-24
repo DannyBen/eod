@@ -17,19 +17,19 @@ describe 'Integration', :require_test_api_token do
   config = YAML.load_file 'spec/integration/commands.yml'
   config.each do |name, command|
     context name do
-      it "works" do
-        args = command.is_a?(Array) ? command : command.split(' ')
+      it 'executes successfully' do
+        args = command.is_a?(Array) ? command : command.split
 
         if args.first == '!'
           args = args.drop 1
           expect { subject.run args }
             .to output_approval("integration/#{name}")
-        
+
         else
           expect { subject.run args }
             .to output_approval("integration/#{name}")
-            .except(/(\-?\d)+/, '#')
-        
+            .except(/(-?\d)+/, '#')
+
         end
       end
     end

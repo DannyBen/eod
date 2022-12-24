@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'byebug'
 gem 'pretty_trace'
@@ -12,4 +12,3 @@ gem 'sinatra'
 gem 'yard'
 
 gemspec
-

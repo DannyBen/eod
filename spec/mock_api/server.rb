@@ -20,10 +20,10 @@ get '/err/:code' do
 end
 
 get '/*' do
-  path = params['splat'].first
+  # path = params['splat'].first
   if params[:fmt] == 'csv'
     "date,price\n2022-01-01,123\n2022-01-02,123\n"
   else
-    json [{ date: "2022-01-01", price: 123 }, { date: "2022-01-02", price: 124 }]
+    json [{ date: '2022-01-01', price: 123 }, { date: '2022-01-02', price: 124 }]
   end
 end
