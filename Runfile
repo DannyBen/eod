@@ -1,30 +1,17 @@
-require "runfile-tasks"
 require "pretty_trace/enable-trim"
 require "lp"
-require_relative 'lib/eod'
 
 title   "EOD Developer Toolbelt"
 summary "Runfile tasks for building the EOD gem"
-version EOD::VERSION
 
-RunfileTasks::RubyGems.all 'eod'
-RunfileTasks::Testing.rspec
-RunfileTasks::Docs.rdoc
-
-help   "Run YARD server"
-action :yard do
-  system "yard server -p3000 -B0.0.0.0 -r"
-end
-
-help   "Run interactive console"
-action :console, :c do
-  system "bundle exec bin/console"
-end
+import_gem 'runfile-tasks/gem'
+import_gem 'runfile-tasks/yard'
+import 'debug'
 
 help   "Run test mock server"
 usage  "mockserver"
 action :mockserver do |args|
-  exec "ruby spec/mock_api/server.rb"
+  exec "bundle exec ruby spec/mock_api/server.rb"
 end
 
 help   "Inject the --help output to the README"
@@ -37,6 +24,3 @@ action :'readme-patch' do
   output = readme.gsub /#{tag}(.*)#{tag}/m, "#{tag}\n#{header}\n#{help}\n#{footer}\n#{tag}"
   File.write 'README.md', output
 end
-
-
-require './debug.rb' if File.exist? 'debug.rb'
