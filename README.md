@@ -1,5 +1,7 @@
 # EOD Historical Data API Library and Command Line
 
+![repocard](https://repocard.dannyben.com/svg/eod.svg)
+
 This gem provides both a Ruby library and a command line interface for the 
 [EOD Historical Data][docs] data service.
 
